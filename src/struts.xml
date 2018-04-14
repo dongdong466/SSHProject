@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+        "http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+    <!--
+        >>>>>>>>>>>>>> 配置常量
+        struts的对象工厂 = spring 将action交给Spring来创建
+        struts.objectFactory = spring
+
+        ### 在使用SpringObjectFactory时指定自动连接逻辑
+        ### 有效值是:name、type、auto和构造函数(名称是默认值)
+        struts.objectFactory.spring.autoWire = name (这个配置是默认打开的) Spring负责装配action依赖属性
+
+        详情可以看 struts2-core-2.3.24.jar 架包里的 struts2-core-2.3.24.jar!\org\apache\struts2\default.properties 34-38行
+    -->
+    <constant name="struts.objectFactory" value="spring"></constant>
+
+    <package name="crm" namespace="/" extends="struts-default">
+
+        <interceptors>
+            <!-- 注册拦截器 -->
+            <interceptor name="privilegeInterceptor" class="com.dong1990.web.interceptor.PrivilegeInterceptor"></interceptor>
+
+            <!-- 配置拦截器栈 (Stack堆)-->
+            <interceptor-stack name="myStack">
+                <interceptor-ref name="privilegeInterceptor">
+                    <param name="excludeMethods">login,regist</param><!--这两个方法不包含在校验当中的-->
+                </interceptor-ref>
+                <interceptor-ref name="defaultStack"></interceptor-ref>
+            </interceptor-stack>
+        </interceptors>
+        <!-- 指定默认拦截器栈 -->
+        <default-interceptor-ref name="myStack"></default-interceptor-ref>
+
+        <!-- 全局结果集配置 -->
+        <global-results>
+            <result name="toLogin" type="redirect" >/login.jsp</result>
+        </global-results>
+
+        <!--          ****************************                    -->
+        <global-exception-mappings>
+            <exception-mapping exception="java.lang.RuntimeException" result="error"></exception-mapping>
+        </global-exception-mappings>
+        <!--spring 和 Struts 整合-->
+        <!--
+            整合方案1：class属性上仍然配置action的完整类名
+            整合效果：Struts2仍然创建action，由Spring负责组装action中的依赖属性
+
+        -->
+        <!--<action name="UserAction_*" class="com.dong1990.web.action.UserAction" method="{1}">
+            <result name="success">/success.jsp</result>
+        </action>-->
+        <!--
+            整合方案2：class属性填写上填写Spring中action对象的BeanName
+            完全由Spring管理action的生命周期，其中包括action的创建
+            注意：需要手动组装依赖属性，就是在<bean></bean>里面要自己写<property属性>
+        -->
+        <action name="UserAction_*" class="userAction" method="{1}">
+            <result name="toHome" type="redirect">/index.htm</result>
+            <result name="error" >/login.jsp</result>
+            <result name="regist" >/regist.jsp</result>
+        </action>
+        <!--客户Action-->
+        <action name="CustomerAction_*" class="customerAction" method="{1}">
+            <result name="edit" >/jsp/customer/add.jsp</result>
+            <result name="list" >/jsp/customer/list.jsp</result>
+            <result name="toList" type="redirectAction" >
+                <param name="namespace">/</param>
+                <param name="actionName">CustomerAction_list</param>
+            </result>
+        </action>
+        <!--联系人Action-->
+        <action name="LinkManAction_*" class="linkManAction" method="{1}">
+            <result name="edit" >/jsp/linkman/add.jsp</result>
+            <result name="error" >/jsp/linkman/list.jsp</result>
+            <result name="list" >/jsp/linkman/list.jsp</result>
+            <result name="toList" type="redirectAction" >
+                <param name="namespace">/</param>
+                <param name="actionName">LinkManAction_list</param>
+            </result>
+        </action>
+        <!--数据字典Action-->
+        <action name="BaseDictAction" class="baseDictAction" method="execute">
+
+        </action>
+    </package>
+
+</struts>
