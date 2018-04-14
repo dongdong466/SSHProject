@@ -25,7 +25,6 @@ public class PrivilegeInterceptor extends MethodFilterInterceptor {
 				//不存在=> 重定向到登陆页面
 				return "toLogin";
 			}
-			
 	}
 
 }
