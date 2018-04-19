@@ -38,7 +38,7 @@ public class User {
 		return saleVisits;
 	}
 
-	public void setSaleVisites(Set<SaleVisit> saleVisits) {
+	public void setSaleVisits(Set<SaleVisit> saleVisits) {
 		this.saleVisits = saleVisits;
 	}
 
