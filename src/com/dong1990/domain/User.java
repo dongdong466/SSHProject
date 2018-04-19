@@ -32,14 +32,14 @@ public class User {
 	private Character user_state;
 
 	// 表达客户与拜访记录的一对多关系
-	private Set<SaleVisit> saleVisites = new HashSet<SaleVisit>();
+	private Set<SaleVisit> saleVisits = new HashSet<SaleVisit>();
 
-	public Set<SaleVisit> getSaleVisites() {
-		return saleVisites;
+	public Set<SaleVisit> getSaleVisits() {
+		return saleVisits;
 	}
 
-	public void setSaleVisites(Set<SaleVisit> saleVisites) {
-		this.saleVisites = saleVisites;
+	public void setSaleVisites(Set<SaleVisit> saleVisits) {
+		this.saleVisits = saleVisits;
 	}
 
 

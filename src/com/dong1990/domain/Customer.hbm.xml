@@ -60,7 +60,7 @@
 		<many-to-one name="cust_level" column="cust_level" class="BaseDict"></many-to-one>
 
 		<!--一对多-->
-		<set name="saleVisites">
+		<set name="saleVisits">
 			<key column="visit_cust_id"></key>
 			<one-to-many class="SaleVisit"></one-to-many>
 		</set>

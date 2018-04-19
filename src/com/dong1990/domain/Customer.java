@@ -33,14 +33,14 @@ public class Customer {
 	private BaseDict cust_level; //客户级别
 
 	// 表达客户与拜访记录的一对多关系
-	private Set<SaleVisit> saleVisites = new HashSet<SaleVisit>();
+	private Set<SaleVisit> saleVisits = new HashSet<SaleVisit>();
 
-	public Set<SaleVisit> getSaleVisites() {
-		return saleVisites;
+	public Set<SaleVisit> getSaleVisits() {
+		return saleVisits;
 	}
 
-	public void setSaleVisites(Set<SaleVisit> saleVisites) {
-		this.saleVisites = saleVisites;
+	public void setSaleVisites(Set<SaleVisit> saleVisits) {
+		this.saleVisits = saleVisits;
 	}
 
 	public BaseDict getCust_source() {
