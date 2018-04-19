@@ -1,5 +1,8 @@
 package com.dong1990.domain;
 
+import java.util.HashSet;
+import java.util.Set;
+
 public class Customer {
 	
 	/*
@@ -28,6 +31,17 @@ public class Customer {
 	private BaseDict cust_source; //客户来源 cust_source.dict_id
 	private BaseDict cust_industry; //客户行业
 	private BaseDict cust_level; //客户级别
+
+	// 表达客户与拜访记录的一对多关系
+	private Set<SaleVisit> saleVisites = new HashSet<SaleVisit>();
+
+	public Set<SaleVisit> getSaleVisites() {
+		return saleVisites;
+	}
+
+	public void setSaleVisites(Set<SaleVisit> saleVisites) {
+		this.saleVisites = saleVisites;
+	}
 
 	public BaseDict getCust_source() {
 		return cust_source;
