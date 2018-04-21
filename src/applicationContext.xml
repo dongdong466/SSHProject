@@ -11,13 +11,13 @@
 
 
     <!-- 读取db.properties文件 -->
-    <context:property-placeholder location="classpath:db.properties" />
+    <context:property-placeholder location="classpath:db.properties"/>
     <!--配置c3p0连接池-->
     <bean name="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="jdbcUrl" value="${jdbc.jdbcUrl}" ></property>
-        <property name="driverClass" value="${jdbc.driverClass}" ></property>
-        <property name="user" value="${jdbc.user}" ></property>
-        <property name="password" value="${jdbc.password}" ></property>
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"></property>
+        <property name="driverClass" value="${jdbc.driverClass}"></property>
+        <property name="user" value="${jdbc.user}"></property>
+        <property name="password" value="${jdbc.password}"></property>
     </bean>
 
 
@@ -29,7 +29,7 @@
     </bean>
 
     <!--开启注解事务--><!--在Service中使用注解-->
-    <tx:annotation-driven transaction-manager="transactionManager" />
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
     <!--
         hibernate与Spring整合配置如下
@@ -118,6 +118,20 @@
     </bean>
     <!--dao配置-->
     <bean name="baseDictDao" class="com.dong1990.dao.impl.BaseDictDaoImpl">
+        <!--注入sessionFactory-->
+        <!--dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory-->
+        <property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+
+    <bean name="saleVisitAction" class="com.dong1990.web.action.SaleVisitAction" scope="prototype">
+        <property name="saleVisitService" ref="saleVisitService"></property>
+    </bean>
+    <!--service配置-->
+    <bean name="saleVisitService" class="com.dong1990.service.impl.SaleVisitServiceImpl">
+        <property name="saleVisitDao" ref="saleVisitDao"></property>
+    </bean>
+    <!--dao配置-->
+    <bean name="saleVisitDao" class="com.dong1990.dao.impl.SaleVisitDaoImpl">
         <!--注入sessionFactory-->
         <!--dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory-->
         <property name="sessionFactory" ref="sessionFactory"></property>

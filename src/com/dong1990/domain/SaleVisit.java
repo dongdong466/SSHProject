@@ -33,7 +33,7 @@ public class SaleVisit {
 	private Customer customer;
 	//表达所属用户对象 多对一
 	private User	user;
-	
+
 	public String getVisit_id() {
 		return visit_id;
 	}

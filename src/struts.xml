@@ -80,6 +80,15 @@
                 <param name="actionName">LinkManAction_list</param>
             </result>
         </action>
+        <!--客户拜访人Action-->
+        <action name="SaleVisitAction_*" class="saleVisitAction" method="{1}">
+            <result name="edit" >/jsp/salevisit/edit.jsp</result>
+            <result name="list" >/jsp/salevisit/list.jsp</result>
+            <result name="toList" type="redirectAction" >
+                <param name="namespace">/</param>
+                <param name="actionName">SaleVisitAction_list</param>
+            </result>
+        </action>
         <!--数据字典Action-->
         <action name="BaseDictAction" class="baseDictAction" method="execute">
 
