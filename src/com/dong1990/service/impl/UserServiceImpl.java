@@ -4,15 +4,18 @@ import com.dong1990.dao.UserDao;
 import com.dong1990.domain.User;
 import com.dong1990.service.UserService;
 import com.dong1990.utils.MD5Utils;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 
+@Service("userService")
 @Transactional(isolation=Isolation.REPEATABLE_READ,propagation=Propagation.REQUIRED,readOnly=true)
 public class UserServiceImpl implements UserService{
 
-
+    @Resource(name = "userDao")
     private UserDao userDao;
 
     public void setUserDao(UserDao userDao) {

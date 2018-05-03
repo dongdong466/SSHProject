@@ -5,15 +5,25 @@ import com.dong1990.domain.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.HibernateCallback;
 import org.springframework.orm.hibernate5.support.HibernateDaoSupport;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 // HibernateDaoSupport 为dao注入sessionFactory
+@Repository("userDao")
 public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
+
+    @Resource(name="sessionFactory")
+    public  void setSesion(SessionFactory sessionFactory) {
+        super.setSessionFactory(sessionFactory);
+    }
+
     @Override
     public User getByUserCode(final String usercode) {
 

@@ -5,15 +5,18 @@ import com.dong1990.domain.Customer;
 import com.dong1990.service.CustomerService;
 import com.dong1990.utils.PageBean;
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
-
+@Service("customerService")
 @Transactional(isolation= Isolation.REPEATABLE_READ,propagation= Propagation.REQUIRED,readOnly=true)
 public class CustomerServiceImpl implements CustomerService{
 
+    @Resource(name = "customerDao")
     private CustomerDao customerDao;
 
     public void setCustomerDao(CustomerDao customerDao) {

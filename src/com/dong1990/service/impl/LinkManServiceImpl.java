@@ -5,15 +5,19 @@ import com.dong1990.domain.LinkMan;
 import com.dong1990.service.LinkManService;
 import com.dong1990.utils.PageBean;
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
-
+@Service("linkManService")
 @Transactional(isolation= Isolation.REPEATABLE_READ,propagation= Propagation.REQUIRED,readOnly=true)
 public class LinkManServiceImpl implements LinkManService {
 
+    @Resource(name = "linkManDao")
     private LinkManDao linkManDao;
 
     public void setLinkManDao(LinkManDao linkManDao) {

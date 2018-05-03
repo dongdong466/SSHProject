@@ -5,15 +5,19 @@ import com.dong1990.domain.SaleVisit;
 import com.dong1990.service.SaleVisitService;
 import com.dong1990.utils.PageBean;
 import org.hibernate.criterion.DetachedCriteria;
+import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.List;
-
+@Service("saleVisitService")
 @Transactional(isolation = Isolation.REPEATABLE_READ, propagation = Propagation.REQUIRED, readOnly = true)
 public class SaleVisitServiceImpl implements SaleVisitService {
 
+    @Resource(name = "saleVisitDao")
     private SaleVisitDao saleVisitDao;
 
 

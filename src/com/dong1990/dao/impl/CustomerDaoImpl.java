@@ -5,11 +5,21 @@ import com.dong1990.domain.Customer;
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
+import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate5.HibernateCallback;
+import org.springframework.stereotype.Repository;
 
+import javax.annotation.Resource;
 import java.util.List;
 
+@Repository("customerDao")
 public class CustomerDaoImpl extends BaseDaoImpl<Customer> implements CustomerDao{
+
+    @Resource(name="sessionFactory")
+    public  void setSesion(SessionFactory sessionFactory) {
+        super.setSessionFactory(sessionFactory);
+    }
+
     @Override
     public List<Object> getIndustryCount() {
         List<Object> list = getHibernateTemplate().execute(new HibernateCallback<List>(){

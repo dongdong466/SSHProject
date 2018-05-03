@@ -11,14 +11,19 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
+import javax.annotation.Resource;
 import java.io.File;
 import java.util.List;
 
-
+@Scope("prototype")
+@Controller("customerAction")
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer>{
 
     private Customer customer = new Customer();
+    @Resource(name = "customerService")
     private CustomerService customerService;
     private Integer currentPage;
     private Integer pageSize;

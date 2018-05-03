@@ -10,15 +10,19 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
+import javax.annotation.Resource;
 import java.io.File;
 
-
+@Scope("prototype")
+@Controller("linkManAction")
 public class LinkManAction extends ActionSupport implements ModelDriven<LinkMan>{
 
 
     private LinkMan linkMan = new LinkMan();
-
+    @Resource(name = "linkManService")
     private LinkManService linkManService;
     private Integer currentPage;
     private Integer pageSize;

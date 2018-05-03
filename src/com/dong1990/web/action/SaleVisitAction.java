@@ -11,10 +11,17 @@ import com.opensymphony.xwork2.ModelDriven;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
 
+import javax.annotation.Resource;
+
+@Scope("prototype")
+@Controller("saleVisitAction")
 public class SaleVisitAction extends ActionSupport implements ModelDriven<SaleVisit> {
 
     private SaleVisit saleVisit = new SaleVisit();
+    @Resource(name = "saleVisitService")
     private SaleVisitService saleVisitService;
 
     private Integer currentPage;

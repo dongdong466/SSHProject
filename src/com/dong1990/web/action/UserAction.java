@@ -5,12 +5,18 @@ import com.dong1990.service.UserService;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import javax.annotation.Resource;
 
 
-
+@Scope("prototype")
+@Controller("userAction")
 public class UserAction extends ActionSupport implements ModelDriven<User>{
 
     private User user = new User();
+    @Resource(name = "userService")
     private UserService userService;
 
     // 整合方案1：不推荐这样的方式

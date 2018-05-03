@@ -20,6 +20,8 @@
         <property name="password" value="${jdbc.password}"></property>
     </bean>
 
+    <!--开启扫描类中的注解-->
+    <context:component-scan base-package="com.dong1990"></context:component-scan>
 
     <!--整合aop事务-->
     <!--核心事务管理器-->
@@ -64,77 +66,79 @@
         <!--引入orm元数据,指定orm元数据所在的包路径，Spring会自动读取包中的所有配置-->
         <property name="mappingDirectoryLocations" value="classpath:com/dong1990/domain"></property>
     </bean>
+<!--
 
-    <!--action配置-->
-    <!--注意：action对象作用范围一定是多例的，这样才符合Struts2架构,所以要在bean的action里加上scope="prototype"-->
+    &lt;!&ndash;action配置&ndash;&gt;
+    &lt;!&ndash;注意：action对象作用范围一定是多例的，这样才符合Struts2架构,所以要在bean的action里加上scope="prototype"&ndash;&gt;
     <bean name="userAction" class="com.dong1990.web.action.UserAction" scope="prototype">
         <property name="userService" ref="userService"></property>
     </bean>
-    <!--service配置-->
+    &lt;!&ndash;service配置&ndash;&gt;
     <bean name="userService" class="com.dong1990.service.impl.UserServiceImpl">
         <property name="userDao" ref="userDao"></property>
     </bean>
-    <!--dao配置-->
+    &lt;!&ndash;dao配置&ndash;&gt;
     <bean name="userDao" class="com.dong1990.dao.impl.UserDaoImpl">
-        <!--注入sessionFactory-->
-        <!--dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory-->
+        &lt;!&ndash;注入sessionFactory&ndash;&gt;
+        &lt;!&ndash;dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory&ndash;&gt;
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
     <bean name="customerAction" class="com.dong1990.web.action.CustomerAction" scope="prototype">
         <property name="customerService" ref="customerService"></property>
     </bean>
-    <!--service配置-->
+    &lt;!&ndash;service配置&ndash;&gt;
     <bean name="customerService" class="com.dong1990.service.impl.CustomerServiceImpl">
         <property name="customerDao" ref="customerDao"></property>
     </bean>
-    <!--dao配置-->
+    &lt;!&ndash;dao配置&ndash;&gt;
     <bean name="customerDao" class="com.dong1990.dao.impl.CustomerDaoImpl">
-        <!--注入sessionFactory-->
-        <!--dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory-->
+        &lt;!&ndash;注入sessionFactory&ndash;&gt;
+        &lt;!&ndash;dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory&ndash;&gt;
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
     <bean name="linkManAction" class="com.dong1990.web.action.LinkManAction" scope="prototype">
         <property name="linkManService" ref="linkManService"></property>
     </bean>
-    <!--service配置-->
+    &lt;!&ndash;service配置&ndash;&gt;
     <bean name="linkManService" class="com.dong1990.service.impl.LinkManServiceImpl">
         <property name="linkManDao" ref="linkManDao"></property>
     </bean>
-    <!--dao配置-->
+    &lt;!&ndash;dao配置&ndash;&gt;
     <bean name="linkManDao" class="com.dong1990.dao.impl.LinkManDaoImpl">
-        <!--注入sessionFactory-->
-        <!--dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory-->
+        &lt;!&ndash;注入sessionFactory&ndash;&gt;
+        &lt;!&ndash;dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory&ndash;&gt;
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
     <bean name="baseDictAction" class="com.dong1990.web.action.BaseDictAction" scope="prototype">
         <property name="baseDictService" ref="baseDictService"></property>
     </bean>
-    <!--service配置-->
+    &lt;!&ndash;service配置&ndash;&gt;
     <bean name="baseDictService" class="com.dong1990.service.impl.BaseDictServiceImpl">
         <property name="baseDictDao" ref="baseDictDao"></property>
     </bean>
-    <!--dao配置-->
+    &lt;!&ndash;dao配置&ndash;&gt;
     <bean name="baseDictDao" class="com.dong1990.dao.impl.BaseDictDaoImpl">
-        <!--注入sessionFactory-->
-        <!--dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory-->
+        &lt;!&ndash;注入sessionFactory&ndash;&gt;
+        &lt;!&ndash;dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory&ndash;&gt;
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
 
     <bean name="saleVisitAction" class="com.dong1990.web.action.SaleVisitAction" scope="prototype">
         <property name="saleVisitService" ref="saleVisitService"></property>
     </bean>
-    <!--service配置-->
+    &lt;!&ndash;service配置&ndash;&gt;
     <bean name="saleVisitService" class="com.dong1990.service.impl.SaleVisitServiceImpl">
         <property name="saleVisitDao" ref="saleVisitDao"></property>
     </bean>
-    <!--dao配置-->
+    &lt;!&ndash;dao配置&ndash;&gt;
     <bean name="saleVisitDao" class="com.dong1990.dao.impl.SaleVisitDaoImpl">
-        <!--注入sessionFactory-->
-        <!--dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory-->
+        &lt;!&ndash;注入sessionFactory&ndash;&gt;
+        &lt;!&ndash;dao层只要是集成了HibernateDaoSupport对象的都是注入sessionFactory&ndash;&gt;
         <property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
+-->
 
 </beans>
