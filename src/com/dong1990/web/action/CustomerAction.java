@@ -13,6 +13,7 @@ import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Restrictions;
 
 import java.io.File;
+import java.util.List;
 
 
 public class CustomerAction extends ActionSupport implements ModelDriven<Customer>{
@@ -90,6 +91,19 @@ public class CustomerAction extends ActionSupport implements ModelDriven<Custome
         //2 将客户对象放置到request域,并转发到编辑页面
         ActionContext.getContext().put("customer", c);
         return "edit";
+    }
+
+    public String industryCount() throws Exception {
+        List<Object> list = customerService.getIndustryCount();
+        ActionContext.getContext().put("list",list);
+        return "industryCount";
+    }
+
+    public String sourceCount() throws Exception {
+        List<Object> list = customerService.getSourceCount();
+        ActionContext.getContext().put("list",list);
+        ActionContext.getContext().put("customer","customer");
+        return "sourceCount";
     }
 
     @Override

@@ -47,4 +47,16 @@ public class CustomerServiceImpl implements CustomerService{
     public Customer getById(Long cust_id) {
         return customerDao.getById(cust_id);
     }
+
+    @Override
+    public List<Object> getIndustryCount() {
+        List<Object> list = customerDao.getIndustryCount();
+        return list;
+    }
+
+    @Override
+    public List<Object> getSourceCount() {
+        List<Object> list = customerDao.getSourceCount();
+        return list;
+    }
 }
